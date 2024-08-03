@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Members</title>
+    <link rel="stylesheet" href="viewMember.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+
+<body>
+    <div class="main">
+
+        <header>
+            <div class="navbar">
+                <a href="../../HomePage/homePage.html"><img class="somaiya-logo-main" src="../../Photos/logo_somaiya.png" alt="somaiya-logo"></a>
+                <button class="logoutBtn">Logout
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="sidebar">
+            <a href="../../ViewPage/ViewCertificate/viewCertificate.html"><button class="nav-btn">View Certificate</button></a>
+            <a href="../../ViewPage/ViewMember/viewMember.html"><button class="nav-btn">View Member</button></a>
+            <a href="../../ViewPage/ViewActivity/viewActivity.html"><button class="nav-btn">View Activity</button></a>
+            <a href="../../ViewPage/ViewPending/viewPending.html"><button class="nav-btn">View Pending Approvals</button></a>
+            <a href="../../ViewPage/ViewSummary/Summary_new.html"><button class="nav-btn">Summary</button></a>
+        </div>
+
+        <div id="side-nav">
+            <span onclick="toggleNav()">&#9776;</span>
+        </div>
+
+        <div class="content">
+
+            <div class="txt">
+              <h1>View Members</h1>
+            </div>
+
+            <div class="search-container">
+                <input type="search" id="search-input" placeholder="Search...">
+                <button id="search-btn">Search</button>
+            </div>
+
+            <div class="table-container">
+                <table id="myTable">
+
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>View</th>                        
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rahul</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Rahul</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Gaurav</td>
+                            <td>Engineer</td>
+                            <td>
+                                <button class="viewButton"><img src="../../Photos/eye-solid.png" alt="View"></button> 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="overlay">
+                <div id="overlayContent">
+                    <div class="popup-content">
+                        <div>
+                            <span>First Name</span>
+                            <span id="firstName"></span>
+                        </div>
+                        <div>
+                            <span>Last Name</span>
+                            <span id="lastName"></span>
+                        </div>
+                        <div>
+                            <span>Designation</span>
+                            <span id="designation"></span>
+                        </div>
+                        <div>
+                            <span>Branch</span>
+                            <span id="branch"></span>
+                        </div>
+                        <div>
+                            <span>Year</span>
+                            <span id="year"></span>
+                        </div>
+                        <div>
+                            <span>Roll No.</span>
+                            <span id="rollNo"></span>
+                        </div>
+                        <div>
+                            <span>Email ID</span>
+                            <span id="email"></span>
+                        </div>
+                        <div>
+                            <span>Contact No.</span>
+                            <span id="contact"></span>
+                        </div>
+                        <button id="closeButton">✖ Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="viewMember.js"></script>
+</body>
+</html>

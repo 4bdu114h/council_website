@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMAIYA Vidyavihar University</title>
+    <link rel="stylesheet" href="homePage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+<body>
+    <div class="main">
+
+        <header>
+            <div class="navbar">
+                <a href="../HomePage/homePage.html"><img class="somaiya-logo-main" src="../Photos/logo_somaiya.png" alt="somaiya-logo"></a>
+                <button class="logoutBtn">Logout
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+
+    <div class="content">
+        <div class="intro">
+            <img src="../Photos/faculty_icon.png" alt="Faculty Icon">
+            <h2>Welcome, Faculty</h2>
+        </div>
+
+        <div class="container">
+            <h1>Select Academic Year & Council</h1>
+            <label for="academic-year">Select Academic Year:</label>
+            <select id="academic-year" onchange="toggleButtons()">
+                <option value="" disabled selected>Select Year</option>
+                <option value="2023-2024">2023-2024</option>
+                <option value="2024-2025">2024-2025</option>
+                <option value="2025-2026">2025-2026</option>
+            </select>
+    
+            <label for="council">Select Council:</label>
+            <select id="council" onchange="toggleButtons()">
+                <option value="" disabled selected>Select Council</option>
+                <option value="Student Council">Student Council</option>
+                <option value="Academic Council">Academic Council</option>
+                <option value="Sports Council">Sports Council</option>
+            </select>
+    
+            <div class="button-container">
+                <a id="view-link" href="#">
+                    <button id="view-button" disabled>View</button>
+                </a>
+                <a id="edit-link" href="#">
+                    <button id="edit-button" disabled>Edit</button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <script src="homePage.js"></script>
+</body>
+</html>

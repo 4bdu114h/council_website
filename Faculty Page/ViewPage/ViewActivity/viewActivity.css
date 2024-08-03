@@ -1,0 +1,267 @@
+body{
+    margin: 0;
+}
+
+.navbar {
+    height: 80px;
+    box-shadow: 1px 1px 5px 1px #888888;
+    background-color: white;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+  
+.logoutBtn {
+    background-color: white;
+    color: black;
+    border: 5px solid #f44336;
+    border-radius: 15px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    box-shadow: 1px 1px 5px 1px #888888;
+    margin-right: 50px;
+}
+  
+.somaiya-logo-main {
+    margin-left: 50px;
+    height: 80%;
+}
+
+.navbar a{
+    display: flex;
+    align-items: center;
+    height: 100%;    
+}
+
+.txt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;  
+    /* background-color: #36d4f4; */
+    height: 8vh;
+    margin-top: 1%;
+}
+
+.search-container {
+    height: 4vh;
+    width: 15%;
+    margin-right: 15%;
+    float: right;
+    margin-bottom: 0.3%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+  
+.search-container input[type="search"] {
+    width: 60%;
+    height: 90%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}                     
+  
+.search-container button[type="button"] {
+    height: 70%;
+    width: 30%;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.table-container{
+    height: 60vh;
+    width: 70%;
+    margin-left: 15%;
+    overflow-y: auto;
+    border-radius: 0.9rem;
+    background-color: #d9d9d9;
+    /* box-shadow: 0.5px 0.5px 3px 0.5px #888888; */
+}
+
+table{
+    width: 100%;
+    text-align: center;
+    background-color: #d9d9d9;
+    border-radius: 1rem;    
+}
+
+
+thead th{
+    font-size: 1.8rem;
+    background-color: #d9d9d9;
+    border-radius: 1.5rem;
+}
+
+tbody tr:nth-child(odd){
+    background-color: #fa5353;
+    color: white;
+}
+
+tbody tr:nth-child(even){
+    background-color: #f1dfdc;
+}
+
+tbody img{  
+    height: 4vh;
+}
+
+tbody button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+td{
+    border-radius: 1.5rem;
+    font-size: 1.5rem;
+    padding: 8px;
+}
+
+tbody td:nth-child(1){
+    width: 40%;
+}
+
+tbody td:nth-child(2){
+    width: 50%;
+}
+
+tbody td:nth-child(3){
+    width: 10%;
+}
+
+#side-nav {
+    position: fixed;
+    width: 1.5%;
+    margin-top: 1%;
+    left: 0;
+    padding: 15px;
+    background-color: transparent;
+    color: black;
+    cursor: pointer;
+    font-size: 2rem;
+    z-index: 100;
+}
+
+#sidebar {
+    z-index: 100;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    margin-top: 1%;
+    left: 0;
+    background-color: #d5c0bb;
+    overflow-x: hidden;
+    color: black;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+#sidebar button {
+    padding: 10px 15px;
+    text-align: left;
+    border: none;
+    background: none;
+    color: black;
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+}
+
+#sidebar button:hover {
+    background-color: #575757;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#overlayContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.popup-content div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-content span {
+    flex-basis: 50%;
+    text-align: left;
+    padding: 1%;
+}
+
+.popup-content input {
+    flex-basis: 50%;
+    text-align: right;
+    border: none;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.popup-content textarea {
+    width: 100%;
+    height: 80px;
+    border: none;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.popup-content button {
+    margin-top: 20px;
+    background-color: #f2dede;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+    font-size: 16px;
+}
