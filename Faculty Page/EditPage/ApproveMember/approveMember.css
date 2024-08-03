@@ -1,8 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-  }
-
-  body{
+body{
     margin: 0;
 }
 
@@ -41,13 +37,24 @@ body {
     height: 100%;    
 }
 
+.home button {
+    background-color: #f0f0f0;
+    border: 2px solid #000000;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px; 
+    margin-top: 1.5%;
+    margin-left: 2%;
+    cursor: pointer;
+}
+
 .txt{
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2rem;  
+    /* background-color: #36d4f4; */
     height: 8vh;
-    margin-top: 1%;
 }
 
 .search-container {
@@ -86,28 +93,23 @@ body {
 }
 
 .table-container{
-    height: 60vh;
+    height: 55vh;
     width: 80%;
     margin-left: 10%;
     overflow-y: auto;
-    border-radius: 0.9rem;
-    background-color: #d9d9d9;
 }
 
 table{
     width: 100%;
     text-align: center;
     background-color: #d9d9d9;
-    border-radius: 1rem; 
+    border-radius: 1rem;
 }
-
 
 thead th{
     font-size: 1.8rem;
     background-color: #d9d9d9;
     border-radius: 1.5rem;
-    width: 30%;
-    padding: 0.5%;
 }
 
 tbody tr:nth-child(odd){
@@ -119,15 +121,18 @@ tbody tr:nth-child(even){
     background-color: #f1dfdc;
 }
 
-tbody img{  
+tbody input {
     height: 4vh;
-    
+    width: 40%;
 }
 
-tbody button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
+
+tbody td:nth-child(1){
+    width: 8%;
+}
+
+tbody td:nth-child(2){
+    width: 40%;
 }
 
 td{
@@ -136,47 +141,43 @@ td{
     padding: 8px;
 }
 
-tbody td:nth-child(1){
-    width: 30%;
+
+tbody img{  
+    height: 4vh;
 }
 
-tbody td:nth-child(2){
-    width: 30%;
-}
-
-tbody td:nth-child(3){
-    width: 30%;
-}
-
-.filter-btn {
-    background-color: #4CAF50;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
-    height: 12%;
-    width: 15%;
-    margin-left: 5%;
-    border-radius: 5%;
-}
-
-#filter-options-2 label{
-    font-size: 1.25rem;
-}
-#filter-options-3 label{
-    font-size: 1.3rem;
-}
-
-.filter-btn img{
+.approve-container {
+    height: 3.5vh;
+    width: 5%;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 95%;
+    margin-top: 1%;
+    margin-left: 10%;
+    margin-bottom: 3%;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
-  
-.filter-btn:hover {
-    background-color: #3e8e41;
+
+.approve-container button {
+    height: 3vh;
+    width: 90%;
+    padding: 10px 20px;  
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.approve-container button:hover {
+    background-color: #89f52b;
 }
 
 
@@ -225,90 +226,4 @@ tbody td:nth-child(3){
 
 a {
     text-decoration: none;
-}
-
-#overlay-member, #overlay-certificate, #overlay-activity {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-#overlayContent {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 600px;
-    background-color: white;
-    border: 2px solid #ccc;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-.popup-content {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.popup-content div {
-    display: flex;
-    justify-content: space-between;
-}
-
-.popup-content span {
-    flex-basis: 50%;
-    text-align: left;
-    padding: 1%;
-}
-
-.popup-content input {
-    flex-basis: 50%;
-    text-align: right;
-    border: none;
-    background-color: #f2f2f2;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.popup-content textarea {
-    width: 100%;
-    height: 80px;
-    border: none;
-    background-color: #f2f2f2;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.popup-content button {
-    margin-top: 20px;
-    background-color: #f2dede;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    align-self: center;
-    font-size: 16px;
-}
-
-.closeButton {
-    background-color: #f2dede;
-    border: none;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin-top: 20px;
-    align-self: center;
-    font-size: 16px;
 }

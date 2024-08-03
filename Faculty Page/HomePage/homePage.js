@@ -9,8 +9,8 @@ function toggleButtons() {
     if ( year && council) {
         viewButton.disabled = false;
         editButton.disabled = false;
-        viewLink.href = `../ViewPage/viewCertificate.html?year=${encodeURIComponent(year)}&council=${encodeURIComponent(council)}`;
-        editLink.href = `../EditPage/approveCertificate.html?year=${encodeURIComponent(year)}&council=${encodeURIComponent(council)}`;
+        viewLink.href = `../ViewPage/ViewCertificate/viewCertificate.html?year=${encodeURIComponent(year)}&council=${encodeURIComponent(council)}`;
+        editLink.href = `../EditPage/ApproveCertificate/approveCertificate.html?year=${encodeURIComponent(year)}&council=${encodeURIComponent(council)}`;
     } else {
         viewButton.disabled = true;
         editButton.disabled = true;

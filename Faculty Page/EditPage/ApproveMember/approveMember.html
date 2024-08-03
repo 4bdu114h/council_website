@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Approve Members</title>
+    <link rel="stylesheet" href="approveMember.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+</head>
+
+<body>
+    <div class="main">
+
+        <header>
+            <div class="navbar">
+              <a href="../../HomePage/homePage.html"><img class="somaiya-logo-main" src="../../Photos/logo_somaiya.png" alt="somaiya-logo"></a>
+                <button class="logoutBtn">Logout
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                </button>
+            </div>
+        </header>
+
+        <div id="sidebar">
+            <a href="../../EditPage/ApproveCertificate/approveCertificate.html"><button class="nav-btn">Approve Certificate</button></a>
+            <a href="../../EditPage/ApproveMember/approveMember.html"><button class="nav-btn">Approve Member</button></a>
+            <a href="../../EditPage/ApproveActivity/approveActivity.html"><button class="nav-btn">Approve Activity</button></a>
+        </div>
+        <div id="side-nav">
+          <span onclick="toggleNav()">&#9776;</span>
+        </div>
+      
+        <div class="content">
+
+            <div class="txt">
+              <h1>MEMBERS</h1>
+            </div>
+
+            <div class="search-container">
+                <input type="search" id="search-input" placeholder="Search...">
+                <button id="search-btn">Search</button>
+            </div>
+
+            <div class="table-container">
+                <table id="myTable">
+                    <thead>
+                      <tr>
+                        <th>Select</th>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>View</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Gaurav</td>
+                        <td>Engineer</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rohit</td>
+                        <td>Manager</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rahil</td>
+                        <td>Failure</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Gaurav</td>
+                        <td>Engineer</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rohit</td>
+                        <td>Manager</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rahil</td>
+                        <td>Failure</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Gaurav</td>
+                        <td>Engineer</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rohit</td>
+                        <td>Manager</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><input type="checkbox"></td>
+                        <td>Rahil</td>
+                        <td>Failure</td>
+                        <td>
+                            <!-- <a href="" > -->
+                            <img src="../../Photos/eye-solid.png" alt="Edit">
+                            </a>
+                        </td>
+                        </tr>
+                    </tbody>
+                  </table>
+            </div>
+            <div class="approve-container">
+                <button id="approve-btn">Approve</button>
+            </div>
+        </div>
+    </div>
+    <script src="approveMember.js"></script>
+</body>
+</html>
