@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Certificate</title>
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logout-button {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .home-container, .back-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1px 2px;
+            box-sizing: border-box;
+        }
+
+        .home-link, .back-link {
+            text-decoration: none;
+        }
+
+        .home-button, .back-button {
+            background-color: #f0f0f0;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 8px;
+        }
+
+        .home-button img, .back-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+            color: #d51d33;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            width: 70%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="date"], select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #990000;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        input[type="file"] {
+            padding: 10px 0;
+        }
+
+        .save-button {
+            font-family: Marcellus, serif;
+            background-color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .save-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        small {
+            color: #777;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
+    <script>
+        function logout() {
+            // Add logout functionality here
+            window.location.href = 'index.html';
+        }
+
+        function validateForm() {
+            const fileInput = document.getElementById('uploadCertificate');
+            const fileSize = fileInput.files[0].size / 1024 / 1024; // in MB
+            if (fileSize > 1) {
+                alert('File size must not exceed 1 MB');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="Welcome.   html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <a href="index.html">
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+        </a>
+    </header>
+    <div class="home-container">
+        <a href="welcome.html" class="home-link">
+            <button class="home-button">
+                <img src="home.png" alt="Home Icon">
+                <span>Home</span>
+            </button>
+        </a>
+        <a href="editmember.html" class="back-link">
+            <button class="back-button">
+                <img src="back.png" alt="Back Icon">
+                <span>Back</span>
+            </button>
+        </a>
+    </div>
+    <div class="main-content">
+        <h1 class="title">Upload Certificate</h1>
+        <div class="form-container">
+            <form id="certificateForm" onsubmit="return validateForm()" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="certificateName">Certificate Name</label>
+                    <input type="text" id="certificateName" name="certificateName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="participantName">Name of Participant(s)</label>
+                    <input type="text" id="participantName" name="participantName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="issuedBy">Issued By</label>
+                    <input type="text" id="issuedBy" name="issuedBy" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="level">Level</label>
+                    <select id="level" name="level" required>
+                        <option value="">Select Level</option>
+                        <option value="InterCollege">Inter College</option>
+                        <option value="IntraCollege">Intra College</option>
+                        <option value="Regiona">Regional</option>
+                        <option value="state">State</option>
+                        <option value="national">National</option>
+                        <option value="international">International</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="certificateType">Certificate Type</label>
+                    <select id="certificateType" name="certificateType" required>
+                        <option value="team">Team</option>
+                        <option value="individual">Individual</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" rows="4" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="uploadCertificate">Upload File (PDF or .zip files only)</label>
+                    <input type="file" id="uploadCertificate" name="uploadCertificate" accept=".pdf,.zip" required>
+                    <small>(certificate file size must not exceed 1 MB)</small>
+                </div>
+
+                <button type="submit" class="save-button">
+                    <img src="save.png" alt="Save Icon">
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

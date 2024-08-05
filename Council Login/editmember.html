@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Member</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            transition: margin-left 0.3s; /* Smooth transition for the menu */
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+            position: relative; /* Position relative for absolute children */
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .menu-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            position: absolute;
+            bottom: -50px; /* Move the button below the header */
+            left: 10px;
+            z-index: 1100;
+        }
+
+        .menu-button img {
+            height: 24px;
+        }
+
+        .logout-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .menu-container {
+            position: fixed;
+            top: 80px; /* Adjust based on header height */
+            left: 0;
+            height: calc(100% - 80px); /* Adjust to fit below header */
+            width: 200px;
+            background-color: #dedede;
+            border-right: 2px solid #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .menu-open .menu-container {
+            transform: translateX(0);
+        }
+
+        .collapsible-menu a {
+            font-family: Marcellus, serif;
+            display: block;
+            padding: 10px 20px;
+            color: #b7202e;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .collapsible-menu a:hover {
+            background-color: #C88A91;
+        }
+
+        .collapsible-menu a:first-child {
+            margin-top: 50px; /* Push down from top */
+        }
+
+        .main-content {
+            padding: 20px;
+            margin-left: 220px; /* Adjust to account for the menu width */
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+            color: #B7202E;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #B7202E;
+            color: white;
+        }
+
+        td {
+            background-color: #eaeaea;
+        }
+
+        .edit-button, .delete-button {
+            font-family: Marcellus, serif;
+            background-color: #B7202E;
+            border: 2px solid #000000;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .edit-button img, .delete-button img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .add-member-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0;
+        }
+
+        .add-member-button {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-member-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        /* Popup container */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup content */
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 100%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .popup-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #d51d33;
+            text-align: center;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            flex: 0 0 150px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+        <button class="menu-button" onclick="toggleMenu()">
+            <img src="menu.png" alt="Menu Icon">
+        </button>
+        <div class="menu-container collapsible-menu" id="collapsibleMenu">
+            <a href="editcertificate.html">Certificates</a>
+            <a href="editmember.html">Members</a>
+            <a href="editactivity.html">Activities</a>
+        </div>
+    </header>
+
+    <div class="main-content" id="mainContent">
+        <h1 class="title">Edit Member</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example row -->
+                    <tr>
+                        <td>Disha Kataria</td>
+                        <td>Chairperson</td>
+                        <td>
+                            <select id="status" name="status" disabled>
+                                <option value="Approved">Approved</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button class="edit-button">
+                                <img src="edit.png" alt="Edit Icon">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button class="delete-button">
+                                <img src="delete.png" alt="Delete Icon">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="add-member-container">
+            <a href="addmember.html" class="add-member-button">
+                <img src="add.png" alt="Add Icon">
+                <span>Add Member</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Popup for editing member -->
+    <div id="editPopup" class="popup">
+        <div class="popup-content">
+            <button class="close-popup" onclick="closePopup()">Close</button>
+            <h2 class="popup-header">Edit Member</h2>
+            <form>
+                <div class="form-group">
+                    <label for="reason">Reason for rejection:</label>
+                    <textarea id="reason" name="reason" rows="2" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="designation">Designation:</label>
+                    <select id="designation" name="designation">
+                        <option value="Chairperson">Chairperson</option>
+                        <option value="Vice Chairperson">Vice Chairperson</option>
+                        <option value="Events and Operations Head">Events and Operations Head</option>
+                        <option value="Public Relations Head">Public Relations Head</option>
+                        <option value="Corporate Relations Head">Corporate Relations Head</option>
+                        <option value="Social Media and Content Head">Social Media and Content Head</option>
+                        <option value="Marketing Head">Marketing Head</option>
+                        <option value="Finance Secretary">Finance Secretary</option>
+                        <option value="Campus Company and Innovation Head">Campus Company & Innovation Head</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch:</label>
+                    <select id="branch" name="branch">
+                        <option value="">Select Branch</option>
+                        <option value="COMPS">COMPS</option>
+                        <option value="EXTC">EXTC</option>
+                        <option value="EXCP">EXCP</option>
+                        <option value="AIDS">AI DS</option>
+                        <option value="IT">IT</option>
+                        <option value="MECH">MECH</option>
+                        <option value="RAI">RAI</option>
+                        <option value="CCE">CCE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <select id="year" name="year">
+                        <option value="">Select Year</option>
+                        <option value="First">First Year</option>
+                        <option value="Second">Second Year</option>
+                        <option value="Third">Third Year</option>
+                        <option value="Fourth">Fourth Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="rollNo">Roll No.:</label>
+                    <input type="text" id="rollNo" name="rollNo" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email ID:</label>
+                    <input type="email" id="email" name="email" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="contactNo">Contact No.:</label>
+                    <input type="text" id="contactNo" name="contactNo">
+                </div>
+                <button type="button" class="save-button">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to edit buttons
+            const editButtons = document.querySelectorAll('.edit-button');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = button.closest('tr');
+                    const firstName = row.querySelector('td:nth-child(1)').textContent;
+                    const designation = row.querySelector('td:nth-child(2)').textContent;
+                    const status = row.querySelector('td:nth-child(3)').textContent;
+                    const reason = "Reason for rejection"; // Add logic to fetch reason if needed
+
+                    document.getElementById('firstName').value = firstName;
+                    document.getElementById('designation').value = designation;
+                    document.getElementById('reason').value = reason;
+
+                    openPopup();
+                });
+            });
+
+            // Add event listeners to delete buttons
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = button.closest('tr');
+                    row.remove();
+                });
+            });
+        });
+
+        function openPopup() {
+            document.getElementById('editPopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('editPopup').style.display = 'none';
+        }
+
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+    </script>
+</body>
+</html>
