@@ -97,6 +97,8 @@ body{
     width: 80%;
     margin-left: 10%;
     overflow-y: auto;
+    border-radius: 0.9rem;
+    background-color: #d9d9d9;
 }
 
 table{
@@ -144,6 +146,12 @@ td{
 
 tbody img{  
     height: 4vh;
+}
+
+tbody button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
 }
 
 .approve-container {

@@ -122,19 +122,19 @@ document.addEventListener('DOMContentLoaded', function() {
       Coverlay.style.display = 'none';
   });
 
-  Aoverlay.addEventListener('click', function(event) {
-      if (event.target === Aoverlay) {
-          Aoverlay.style.display = 'none';
-      }
-  });
-  Moverlay.addEventListener('click', function(event) {
-      if (event.target === Moverlay) {
-          Moverlay.style.display = 'none';
-      }
-  });
-  Coverlay.addEventListener('click', function(event) {
-      if (event.target === Coverlay) {
-          Coverlay.style.display = 'none';
-      }
-  });
+  // Aoverlay.addEventListener('click', function(event) {
+  //     if (event.target === Aoverlay) {
+  //         Aoverlay.style.display = 'none';
+  //     }
+  // });
+  // Moverlay.addEventListener('click', function(event) {
+  //     if (event.target === Moverlay) {
+  //         Moverlay.style.display = 'none';
+  //     }
+  // });
+  // Coverlay.addEventListener('click', function(event) {
+  //     if (event.target === Coverlay) {
+  //         Coverlay.style.display = 'none';
+  //     }
+  // });
 });

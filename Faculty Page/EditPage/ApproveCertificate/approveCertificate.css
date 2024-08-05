@@ -60,7 +60,7 @@ body{
 .search-container {
     height: 4vh;
     width: 15%;
-    margin-right: 10%;
+    margin-right: 15%;
     float: right;
     margin-bottom: 0.3%;
     display: flex;
@@ -93,10 +93,12 @@ body{
 }
 
 .table-container{
-    height: 55vh;
-    width: 80%;
-    margin-left: 10%;
+    height: 60vh;
+    width: 70%;
+    margin-left: 15%;
     overflow-y: auto;
+    border-radius: 0.9rem;
+    background-color: #d9d9d9;
 }
 
 table{
@@ -126,10 +128,28 @@ tbody img{
     
 }
 
+tbody button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
 td{
     border-radius: 1.5rem;
     font-size: 1.5rem;
     padding: 8px;
+}
+
+tbody td:nth-child(1) {
+    width: 40%;
+}
+
+tbody td:nth-child(2) {
+    width: 50%;
+}
+
+tbody td:nth-child(3) {
+    width: 10%;
 }
 
 

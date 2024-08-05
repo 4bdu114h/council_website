@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
       overlay.style.display = 'none';
   });
 
-  overlay.addEventListener('click', function(event) {
-      if (event.target === overlay) {
-          overlay.style.display = 'none';
-      }
-  });
+  // overlay.addEventListener('click', function(event) {
+  //     if (event.target === overlay) {
+  //         overlay.style.display = 'none';
+  //     }
+  // });
 });
 
 const searchInput = document.getElementById('search-input');
