@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Certificates</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logout-button {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .menu-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            margin: 20px;
+            position: fixed;
+            top: 80px; /* Position below the header */
+            left: 10px;
+            z-index: 1100;
+        }
+
+        .menu-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .collapsible-menu {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100% - 60px);
+            width: 200px;
+            background-color: #dedede;
+            border-right: 2px solid #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .collapsible-menu a {
+            font-family: Marcellus, serif;
+            display: block;
+            padding: 10px 20px;
+            color: #b7202e;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .collapsible-menu a:hover {
+            background-color: #C88A91;
+        }
+
+        .collapsible-menu a:first-child {
+            margin-top: 70px; 
+        }
+
+
+        .main-content {
+            font-family: Marcellus, serif;
+            padding: 20px;
+            margin-left: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .menu-open .collapsible-menu {
+            transform: translateX(0);
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+            color: #B7202E;
+        }
+
+        .table-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        table {
+            width: 100%;
+            max-width: 1000px;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #B7202E;
+            color: white;
+        }
+
+        td {
+            background-color: #eaeaea;
+        }
+
+        .edit-button, .delete-button {
+            font-family: Marcellus, serif;
+            background-color: #B7202E;
+            border: 2px solid #000000;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .edit-button img, .delete-button img {
+            height: 20px;
+            margin-right: 5px;
+        }
+
+        .add-certificate-container {
+            display: flex;
+            justify-content: flex-end;
+            margin: 20px 0;
+        }
+
+        .add-certificate-button {
+            background-color: #4CAF50;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .add-certificate-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            max-width: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .popup-header {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #B7202E;
+            text-align: center;
+        }
+
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .form-group label {
+            width: 130px;
+            margin-right: 10px;
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .close-button {
+            background-color: #B7202E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            float: right;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+    </header>
+    
+    <div class="menu-button" onclick="toggleMenu()">
+        <img src="menu.png" alt="Menu Icon">
+    </div>
+    
+    <div class="collapsible-menu" id="collapsibleMenu">
+        <a href="editcertificate.html">Certificates</a>
+        <a href="editmember.html">Members</a>
+        <a href="editactivity.html">Activities</a>
+    </div>
+
+    <div class="main-content">
+        <h1 class="title">Edit Certificates</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date of Issue</th>
+                        <th>Certificate Name</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01-01-2023</td>
+                        <td>Certificate Example</td>
+                        <td>Pending</td>
+                        <td>
+                            <button class="edit-button" onclick="openPopup('01-01-2023', 'Certificate Example', 'Pending')">
+                                <img src="edit.png" alt="Edit Icon">
+                                Edit
+                            </button>
+                        </td>
+                        <td>
+                            <button class="delete-button">
+                                <img src="delete.png" alt="Delete Icon">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="add-certificate-container">
+            <a href="addcertificate.html" class="add-certificate-button">
+                <img src="add.png" alt="Add Icon">
+                Add Certificate
+            </a>
+        </div>
+    </div>
+
+    <div class="popup" id="editPopup">
+        <div class="popup-content">
+            <button class="close-button" onclick="closePopup()">Close</button>
+            <div class="form-group">
+                <label for="reason">Reason for rejection:</label>
+                <input type="text" id="reason" disabled>
+            </div>
+            <div class="form-group">
+                <label for="certName">Certificate Name:</label>
+                <input type="text" id="certName" disabled>
+            </div>
+            <div class="form-group">
+                <label for="participants">Name of Participant(s):</label>
+                <input type="text" id="participants">
+            </div>
+            <div class="form-group">
+                <label for="startDate">Start Date:</label>
+                <input type="date" id="startDate">
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date:</label>
+                <input type="date" id="endDate">
+            </div>
+            <div class="form-group">
+                <label for="issuedBy">Issued By:</label>
+                <input type="text" id="issuedBy">
+            </div>
+            <div class="form-group">
+                <label for="level">Level:</label>
+                <select id="level">
+                    <option value="InterCollege">Inter College</option>
+                    <option value="IntraCollege">Intra College</option>
+                    <option value="Regional">Regional</option>
+                    <option value="National">National</option>
+                    <option value="International">International</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="certType">Certificate Type:</label>
+                <select id="certType">
+                    <option value="team">Team</option>
+                    <option value="individual">Individual</option>
+                </select>
+            </div>
+            <div class="form-group textarea-group">
+                <label for="description">Description:</label>
+                <textarea id="description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="uploadFile">Upload File (PDF or .zip files only):</label>
+                <input type="file" id="uploadFile" accept=".pdf, .zip">
+            </div>
+            <button class="save-button" onclick="saveChanges()">Save</button>
+        </div>
+    </div>
+
+    <script>
+        function openPopup(issueDate, certName, status) {
+            document.getElementById('reason').value = 'Reason for rejection:';
+            document.getElementById('certName').value = certName;
+            // Populate other fields as needed
+            document.getElementById('editPopup').style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('editPopup').style.display = 'none';
+        }
+
+        function saveChanges() {
+            // Logic to save changes
+            closePopup();
+        }
+
+        function toggleMenu() {
+            const menu = document.getElementById('collapsibleMenu');
+            const mainContent = document.querySelector('.main-content');
+            if (menu.style.transform === 'translateX(0%)') {
+                menu.style.transform = 'translateX(-100%)';
+                mainContent.style.marginLeft = '20px'; // Adjust margin to fit content
+            } else {
+                menu.style.transform = 'translateX(0%)';
+                mainContent.style.marginLeft = '220px'; // Adjust for menu width
+            }
+        }
+
+        // Add event listeners to delete buttons
+        document.addEventListener('DOMContentLoaded', () => {
+            const deleteButtons = document.querySelectorAll('.delete-button');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = button.closest('tr');
+                    row.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>

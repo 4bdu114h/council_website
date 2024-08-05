@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Certificates</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .menu-container {
+            position: fixed;
+            top: 80px; /* Just below the header */
+            left: 0;
+            height: calc(100% - 80px); /* Adjust height to fit below the header */
+            width: 200px;
+            background-color: #dedede;
+            border-right: 2px solid #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            margin: 20px;
+            position: fixed;
+            top: 80px; /* Position below the header */
+            left: 10px;
+            z-index: 1100;
+        }
+
+        .menu-button img {
+            height: 24px;
+        }
+
+        .collapsible-menu a {
+            font-family: Marcellus, serif;
+            display: block;
+            padding: 10px 20px;
+            color: #b7202e;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .collapsible-menu a:hover {
+            background-color: #C88A91;
+        }
+
+        .collapsible-menu a:first-child {
+            margin-top: 50px; 
+        }
+
+        .logout-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            font-family: Marcellus, serif;
+            padding: 20px;
+            margin-left: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .title {
+            font-family: Marcellus, serif;
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .table-container {
+            font-family: Marcellus, serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        table {
+            font-family: Marcellus, serif;
+            width: 70%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #B7202E;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+
+        .view-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: #000000 solid;
+            border-width: 1px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .view-button img {
+            height: 24px; 
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-content div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .popup-content span {
+            flex-basis: 50%;
+            text-align: left;
+        }
+
+        .popup-content input {
+            flex-basis: 50%;
+            text-align: right;
+            border: none;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .popup-content textarea {
+            width: 100%;
+            height: 80px;
+            border: none;
+            background-color: #f2f2f2;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .popup-content button {
+            margin-top: 20px;
+            background-color: #f2dede;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-self: center;
+            font-size: 16px;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .download-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            align-self: center;
+            margin-left: 900px;
+        }
+
+        .menu-open .menu-container {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+    </header>
+
+    <button class="menu-button" onclick="toggleMenu()">
+        <img src="menu.png" alt="Menu Icon">
+    </button>
+
+    <div class="menu-container collapsible-menu" id="collapsibleMenu">
+        <a href="viewcertificate.html">Certificates</a>
+        <a href="viewmember.html">Members</a>
+        <a href="viewactivities.html">Activities</a>
+        <a href="summary.html">Summary</a>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <h1 class="title">View Certificates</h1>
+        <div class="table-container">
+            <button class="download-button" onclick="downloadFiles()">Download Files</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Date of Issue</th>
+                        <th>Name</th>
+                        <th>Actions</th>
+                        <th>Select</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01-07-2024</td>
+                        <td>AI for everyone</td>
+                        <td><button class="view-button"><img src="view.png" alt="View Icon"></button></td>
+                        <td><input type="checkbox" class="activity-checkbox" data-index="0"></td>
+                    </tr>
+                    <tr>
+                        <td>25-06-2024</td>
+                        <td>Effects of AI on jobs</td>
+                        <td><button class="view-button"><img src="view.png" alt="View Icon"></button></td>
+                        <td><input type="checkbox" class="activity-checkbox" data-index="1"></td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div class="popup">
+        <div class="popup-content">
+            <div>
+                <span>Certificate Name</span>
+                <input id="certificateName" readonly>
+            </div>
+            <div>
+                <span>Name of Participant(s)</span>
+                <input id="participantName" readonly>
+            </div>
+            <div>
+                <span>Start Date</span>
+                <input id="startDate" readonly>
+            </div>
+            <div>
+                <span>End Date</span>
+                <input id="endDate" readonly>
+            </div>
+            <div>
+                <span>Issued By</span>
+                <input id="issuedBy" readonly>
+            </div>
+            <div>
+                <span>Certificate Type</span>
+                <input id="certificateType" readonly>
+            </div>
+            <div>
+                <span>Level</span>
+                <input id="level" readonly>
+            </div>
+            <div>
+                <span>Description</span>
+                <textarea id="description" readonly></textarea>
+            </div>
+            <div>
+                <button id="viewCertificate">Certificate</button>
+                <button id="viewPhotos">Photos</button>
+            </div>
+            <button class="close-btn">✖ Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+
+        // Function to show the popup
+        function showPopup(certificate) {
+            document.getElementById('certificateName').value = certificate.name;
+            document.getElementById('participantName').value = certificate.participant;
+            document.getElementById('startDate').value = certificate.startDate;
+            document.getElementById('endDate').value = certificate.endDate;
+            document.getElementById('issuedBy').value = certificate.issuedBy;
+            document.getElementById('certificateType').value = certificate.type;
+            document.getElementById('level').value = certificate.level;
+            document.getElementById('description').value = certificate.description;
+            document.querySelector('.popup').style.display = 'block';
+            document.querySelector('.overlay').style.display = 'block';
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.querySelector('.popup').style.display = 'none';
+            document.querySelector('.overlay').style.display = 'none';
+        }
+
+        // Add event listeners to view buttons
+        document.querySelectorAll('.view-button').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                const certificates = [
+                    {
+                        name: 'AI for everyone',
+                        participant: 'Jay Patil',
+                        startDate: '01-01-2024',
+                        endDate: '01-07-2024',
+                        issuedBy: 'XYZ Organization',
+                        type: 'Individual',
+                        level: 'College',
+                        description: 'An introductory course to AI.'
+                    },
+                    {
+                        name: 'Effects of AI on jobs',
+                        participant: 'Sanya Shaikh',
+                        startDate: '15-05-2024',
+                        endDate: '25-06-2024',
+                        issuedBy: 'ABC Institute',
+                        type: 'Individual',
+                        level: 'District',
+                        description: 'A seminar discussing the impact of AI on employment.'
+                    }
+                ];
+
+                showPopup(certificates[index]);
+            });
+        });
+
+        // Add event listener to close button
+        document.querySelector('.close-btn').addEventListener('click', closePopup);
+        document.querySelector('.overlay').addEventListener('click', closePopup);
+
+        // Function to download selected files
+        function downloadFiles() {
+            const checkboxes = document.querySelectorAll('.activity-checkbox:checked');
+            checkboxes.forEach(checkbox => {
+                const index = checkbox.getAttribute('data-index');
+                // Replace the console log with the actual download logic
+                console.log('Downloading certificate at index:', index);
+                // Assuming you have an array of certificate URLs
+                const certificateUrls = [
+                    'certificate1.pdf',
+                    'certificate2.pdf'
+                ];
+                const link = document.createElement('a');
+                link.href = certificateUrls[index];
+                link.download = certificateUrls[index].split('/').pop();
+                link.click();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .menu-container {
+            position: fixed;
+            top: 80px; /* Just below the header */
+            left: 0;
+            height: calc(100% - 80px); /* Adjust height to fit below the header */
+            width: 200px;
+            background-color: #dedede;
+            border-right: 2px solid #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            margin: 20px;
+            position: fixed;
+            top: 80px; /* Position below the header */
+            left: 10px;
+            z-index: 1100;
+        }
+
+        .menu-button img {
+            height: 24px;
+        }
+
+        .collapsible-menu a {
+            font-family: Marcellus, serif;
+            display: block;
+            padding: 10px 20px;
+            color: #b7202e;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .collapsible-menu a:hover {
+            background-color: #C88A91;
+        }
+
+        .collapsible-menu a:first-child {
+            margin-top: 50px; 
+        }
+
+        .logout-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            font-family: Marcellus, serif;
+            padding: 20px;
+            margin-left: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .iframe-container {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px auto; /* Center horizontally */
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .nav-buttons {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+        }
+
+        .download-button-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        @media print {
+            .nav-buttons, .download-button-container {
+                display: none;
+            }
+        }
+
+        button {
+            font-family: marcellus, serif;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 12px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        button img {
+            height: 20px;
+            width: 20px;
+        }
+
+        .menu-open .menu-container {
+            transform: translateX(0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <button class="menu-button" onclick="toggleMenu()">
+            <img src="menu.png" alt="Menu Icon">
+        </button>
+        <div class="menu-container collapsible-menu" id="collapsibleMenu">
+            <a href="viewcertificate.html">Certificates</a>
+            <a href="viewmember.html">Members</a>
+            <a href="viewactivities.html">Activities</a>
+            <a href="summary.html">Summary</a>
+        </div>
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+    </header>
+
+    <div class="main-content" id="mainContent">
+        <h1>Summary</h1>
+        <div class="iframe-container" id="iframeContainer">
+            <iframe src="summary_new.html" id="summaryIframe"></iframe>
+        </div>
+        <div class="download-button-container">
+            <button onclick="downloadPDF()">
+                <img src="download.png" alt="Download">
+                Download PDF
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+
+        function downloadPDF() {
+            const iframe = document.getElementById('summaryIframe');
+            const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+            const iframeBody = iframeDocument.body;
+
+            html2canvas(iframeBody).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const pdf = new jspdf.jsPDF('p', 'mm', 'a4');
+                const imgProps = pdf.getImageProperties(imgData);
+                const pdfWidth = pdf.internal.pageSize.getWidth();
+                const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+                pdf.save('summary.pdf');
+            });
+        }
+    </script>
+</body>
+</html>
