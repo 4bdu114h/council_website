@@ -118,6 +118,75 @@
                     </tbody>
                 </table>
             </div>
+
+                <div id="overlay">
+                    <div id="overlayContent">
+                        <div class="popup-content">
+                            <div class="closebtn">
+                                <button id="closeButton">✖ Close</button>
+                            </div>
+                            
+                            <div>
+                                <span>Activity type:</span>
+                                <input id="activityType" readonly>
+                            </div>
+            
+                            <div>
+                                <span>Activity Name:</span>
+                                <input id="ActivityName" readonly>
+                            </div>
+                            <div>
+                                <span>Name of Organizing Students/Councils </span>
+                                <input id="Organizers" readonly>
+                            </div>
+                            <div>
+                                <span>Start Date</span>
+                                <input id="startDate" readonly>
+                                <span>End Date</span>
+                                <input id="endDate" readonly>
+                            </div>
+            
+                            <div>
+                                <span>Target Audience: </span>
+                                <input id="Audience" readonly>
+                            </div>
+            
+                            <div>
+                                <span>No of Hours</span>
+                                <input id="Hours" readonly>
+                            </div>
+            
+            
+                            <div>
+                                <span>No of Participants</span>
+                                <input id="Participants" readonly>
+                            </div>
+            
+                            <div>
+                                <span>Description</span>
+                                <input id="description" readonly></textarea>
+                            </div>
+
+                            <div class="approveBtn">
+                                <button id="approveButton" style="background-color: #4CAF50;">Approve</button>
+                                <button id="declineButton" style="background-color: #f44336;">Decline</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            <div id="overlay-reject">
+                <div id="reject-content">
+                    <div class="reason">
+                    <label for="reason">Reason for Decline:</label><br>
+                    <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="reasonBtn">
+                        <button id="cancelBtn" style="background-color: #d9d9d9;">Cancel</button>
+                        <button id="declineBtn" style="background-color: #f44336;">Decline</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="approveActivity.js"></script>

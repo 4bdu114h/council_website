@@ -129,6 +129,66 @@
             <div class="approve-container">
                 <button id="approve-btn">Approve</button>
             </div>
+
+            <div id="overlay">
+              <div id="overlayContent">
+                <div class="popup-content">
+                  <div class="closebtn">
+                    <button id="closeButton">✖ Close</button>
+                  </div>
+                  <div>
+                    <span>First Name</span>
+                    <input id="firstName">
+                  </div>
+                  <div>
+                    <span>Last Name</span>
+                    <span id="lastName"></span>
+                  </div>
+                  <div>
+                    <span>Designation</span>
+                    <span id="designation"></span>
+                  </div>
+                  <div>
+                    <span>Branch</span>
+                    <span id="branch"></span>
+                  </div>
+                  <div>
+                    <span>Year</span>
+                    <span id="year"></span>
+                  </div>
+                  <div>
+                    <span>Roll No.</span>
+                    <span id="rollNo"></span>
+                  </div>
+                  <div>
+                    <span>Email ID</span>
+                    <span id="email"></span>
+                  </div>
+                  <div>
+                    <span>Contact No.</span>
+                    <span id="contact"></span>
+                  </div>
+                  <div class="approveBtn">
+                    <button id="approveButton" style="background-color: #4CAF50;">Approve</button>
+                    <button id="declineButton" style="background-color: #f44336;">Decline</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="overlay-reject">
+              <div id="reject-content">
+                  <div class="reason">
+                  <label for="reason">Reason for Decline:</label><br>
+                  <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                  </div>
+                  <div class="reasonBtn">
+                      <button id="cancelBtn" style="background-color: #d9d9d9;">Cancel</button>
+                      <button id="declineBtn" style="background-color: #f44336;">Decline</button>
+                  </div>
+              </div>
+            </div>
+
         </div>
     </div>
     <script src="approveMember.js"></script>

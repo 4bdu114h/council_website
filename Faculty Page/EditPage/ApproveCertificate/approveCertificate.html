@@ -118,6 +118,64 @@
                     </tbody>
                 </table>
             </div>
+
+            <div id="overlay">
+                <div id="overlayContent">
+                    <div class="popup-content">
+                        <div class="closebtn">
+                            <button id="closeButton">✖ Close</button>
+                        </div>
+                        <div>
+                            <span>Certificate Name</span>
+                            <input id="certificateName" readonly>
+                        </div>
+                        <div>
+                            <span>Name of Participant(s)</span>
+                            <input id="participantName" readonly>
+                        </div>
+                        <div>
+                            <span>Start Date</span>
+                            <input id="startDate" readonly>
+                            <span>End Date</span>
+                            <input id="endDate" readonly>
+                        </div>
+                        <div>
+                            <span>Issued By</span>
+                            <input id="issuedBy" readonly>
+                        </div>
+                        <div>
+                            <span>Certificate Type</span>
+                            <input id="certificateType" readonly>
+                        </div>
+                        <div>
+                            <span>Level</span>
+                            <input id="level" readonly>
+                        </div>
+                        <div>
+                            <span>Description</span>
+                            <input id="description" readonly></textarea>
+                        </div>
+                        <div class="approveBtn">
+                            <button id="approveButton" style="background-color: #4CAF50;">Approve</button>
+                            <button id="declineButton" style="background-color: #f44336;">Decline</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div id="overlay-reject">
+                <div id="reject-content">
+                    <div class="reason">
+                    <label for="reason">Reason for Decline:</label><br>
+                    <textarea id="reason" name="reason" rows="4" cols="50" required></textarea>
+                    </div>
+                    <div class="reasonBtn">
+                        <button id="cancelBtn" style="background-color: #d9d9d9;">Cancel</button>
+                        <button id="declineBtn" style="background-color: #f44336;">Decline</button>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     <script src="approveCertificate.js"></script>

@@ -186,3 +186,181 @@ tbody td:nth-child(3) {
 a {
     text-decoration: none;
 }
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+#overlayContent {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 600px;
+    background-color: white;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* height: fit-content; */
+}
+
+.popup-content div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popup-content span {
+    flex-basis: 50%;
+    text-align: left;
+    padding: 1%;
+}
+
+.popup-content input {
+    flex-basis: 50%;
+    text-align: right;
+    border: none;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.popup-content textarea {
+    width: 100%;
+    height: 80px;
+    border: none;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.closebtn button {
+    background-color: #f2dede;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    align-self: center;
+    font-size: 16px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closebtn{
+    /* background-color: #2342a3; */
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: right;
+    height: 5vh;
+}
+
+.approveBtn{
+    display: flex;
+    justify-content: right;
+    gap: 5%;
+    height: 5vh;
+    margin-top: 2%;
+    /* background-color: yellow; */
+}
+
+.approveBtn button{
+    color: #000000;
+    font-size: medium;
+    border: none;
+    cursor: pointer;
+    flex: 1;
+    margin-right: 10px;
+    border-radius: 5px;
+    height: 100%;
+    width: 6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#overlay-reject {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+}
+
+#reject-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 25.5%;
+    max-width: 600px;
+    background-color: white;
+    border: 2px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#reject-content label{
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: left;
+    /* background-color: #d5c0bb; */
+}
+
+.reason textarea{
+    resize: inherit;
+    display: flex;
+    justify-content: left;
+    background-color: #f4f4f4;
+}
+
+.reasonBtn{
+    /* background-color: #888888; */
+    display: flex;
+    justify-content: right;
+    height: 3vh;
+    margin-top: 2%;
+    gap: 4%;
+}
+
+.reasonBtn button{
+    color: #000000;
+    font-size: medium;
+    border: none;
+    cursor: pointer;
+    /* flex: 1; */
+    border-radius: 5px;
+    height: 100%;
+    width: 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
