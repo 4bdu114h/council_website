@@ -34,13 +34,23 @@ class Activities(db.Model):
     no_of_participants = db.Column(db.Integer)
     objectives = db.Column(db.String(255))
 
-
-
+class Certificates(db.Model):
+    __tablename__ = 'certificates'
+    certificate_id = db.Column(db.Integer, primary_key=True)
+    name_of_certificate = db.Column(db.String(255), nullable=False)
+    start_date = db.Column(db.Date)
+    end_date = db.Column(db.Date)
+    date_of_issue = db.Column(db.Date)
+    issued_by = db.Column(db.String(255))
+    tenure = db.Column(db.Enum('First', 'Second', 'Third', 'Fourth', name='tenure'), nullable=False)
+    type = db.Column(db.Enum('Individual', 'Team', name='certificate_type'))
+    level = db.Column(db.Enum('Inter college', 'Intra college', 'Regional', 'State', 'National', 'International', name='certificate_level'))
+    certificate_description = db.Column(db.String(255))
 
 @app.route('/')
 def index():
-    activities = Activities.query.all()
-    return render_template('viewactivities.html', activities=activities)
+    certificates = Certificates.query.all()
+    return render_template('viewcertificate.html', certificates=certificates)
 
 @app.route('/api/members', methods=['GET'])
 def get_members():
@@ -80,6 +90,31 @@ def get_activities():
         for activity in activities
     ]
     return jsonify(activities_list)
+
+@app.route('/api/certificates', methods=['GET'])
+def get_certificates():
+    certificates = Certificates.query.all()
+    certificates_list = [
+        {
+            "certificate_id": certificate.certificate_id,
+            "name_of_certificate": certificate.name_of_certificate,  # Corrected key name
+            "start_date": certificate.start_date.strftime("%Y-%m-%d") if certificate.start_date else None,
+            "end_date": certificate.end_date.strftime("%Y-%m-%d") if certificate.end_date else None,
+            "date_of_issue": certificate.date_of_issue.strftime("%Y-%m-%d") if certificate.date_of_issue else None,
+            "issued_by": certificate.issued_by,
+            "tenure": certificate.tenure,
+            "certificate_type": certificate.type,
+            "certificate_level": certificate.level,
+            "certificate_description": certificate.certificate_description  # Corrected key name
+        }
+        for certificate in certificates
+    ]
+    return jsonify(certificates_list)
+
+@app.route('/viewcertificates')
+def view_certificates():
+    certificates = Certificates.query.all()
+    return render_template('viewcertificate.html', certificates=certificates)
 
 if __name__ == '__main__':
     app.run(debug=True)
