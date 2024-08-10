@@ -1,0 +1,432 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Upload Activity</title>
+        <style>
+            body {
+                font-family: Marcellus, serif;
+                background-color: #f8f8f8;
+                margin: 0;
+                padding: 0;
+            }
+
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #ffffff;
+                padding: 10px 20px;
+                border-bottom: 2px solid #ffffff;
+            }
+
+            .logo {
+                height: 60px;
+            }
+
+            .logout-button {
+                background-color: #ffffff;
+                border: 2px solid #000000;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                border-radius: 8px;
+            }
+
+            .logout-button img {
+                height: 24px;
+                margin-right: 10px;
+            }
+
+            .home-container, .back-container {
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                padding: 1px 2px;
+                box-sizing: border-box;
+            }
+
+            .home-link, .back-link {
+                text-decoration: none;
+            }
+
+            .home-button, .back-button {
+                background-color: #f0f0f0;
+                border: 2px solid #000000;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                text-decoration: none;
+                color: #000000;
+                border-radius: 8px;
+            }
+
+            .home-button img, .back-button img {
+                height: 24px;
+                margin-right: 10px;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .title {
+                text-align: center;
+                font-size: 36px;
+                margin: 20px 0;
+                color: #d51d33;
+            }
+
+            .form-container {
+                display: flex;
+                justify-content: center;
+            }
+
+            form {
+                width: 90%;
+                max-width: 800px;
+                background-color: #ffffff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+                margin-left: 5px;
+                margin-right: 5px;
+                display: flex;
+                align-items: center;
+            }
+
+            label {
+                flex: 1;
+                margin-right: 10px;
+                font-weight: bold;
+            }
+
+            input[type="text"], input[type="date"], select, textarea {
+                flex: 2;
+                padding: 10px;
+                border: 2px solid #990000;
+                border-radius: 5px;
+                font-size: 16px;
+                box-sizing: border-box;
+            }
+
+            textarea {
+                resize: vertical;
+            }
+
+            input[type="file"] {
+                padding: 10px 0;
+            }
+
+            .save-button, .add-speaker-button, .upload-button {
+                font-family: Marcellus, serif;
+                background-color: #4CAF50;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                color: white;
+                border: 2px solid #000000;
+                margin-right: 10px;
+            }
+
+            .add-speaker-button {
+                background-color: #1E90FF;
+            }
+
+            .upload-button {
+                background-color: #d51d33;
+            }
+
+            .save-button img, .add-speaker-button img, .upload-button img {
+                height: 24px;
+                margin-right: 10px;
+            }
+
+            small {
+                color: #777;
+                margin-top: -10px;
+                margin-bottom: 10px;
+                display: block;
+            }
+
+            .checkbox-group {
+                display: flex;
+                flex-wrap: wrap;
+                margin-bottom: 15px;
+            }
+
+            .checkbox-group label {
+                display: flex;
+                align-items: center;
+                margin-right: 10px;
+            }
+
+            .checkbox-group input {
+                margin-right: 5px;
+            }
+            /* Popup form style */
+            .popup-form {
+                display: none;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background-color: white;
+                border: 2px solid #000;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+                padding: 20px;
+                width: 500px;
+                max-width: 90%;
+            }
+
+            .popup-form .form-group {
+                margin-bottom: 15px;
+            }
+
+            .popup-form .save-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .popup-overlay {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                z-index: 999;
+            }
+            
+            .speaker-button {
+                font-family: Marcellus, serif;
+                background-color: #b0a6d3;
+                border: none;
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 8px;
+                display: flex;
+                align-items: center;
+                color: black;
+                border: 2px solid #000000;
+                margin-right: 10px;
+            }
+        
+        
+        
+        </style>
+        <script>
+            function logout() {
+                // Add logout functionality here
+                window.location.href = 'index.html';
+            }
+    
+            function validateForm() {
+                const fileInput = document.getElementById('uploadPhotos');
+                const fileSize = fileInput.files[0].size / 1024 / 1024; // in MB
+                if (fileSize > 1) {
+                    alert('File size must not exceed 1 MB');
+                    return false;
+                }
+                return true;
+            }
+    
+            function showPopup() {
+                document.getElementById('popupForm').style.display = 'block';
+                document.getElementById('popupOverlay').style.display = 'block';
+            }
+    
+            function closePopup() {
+                document.getElementById('popupForm').style.display = 'none';
+                document.getElementById('popupOverlay').style.display = 'none';
+            }
+    
+            function addSpeaker() {
+                const speakerName = document.getElementById('speakerName').value;
+                const speakerCompany = document.getElementById('speakerCompany').value;
+                const speakerDesignation = document.getElementById('speakerDesignation').value;
+                const speakerLinkedIn = document.getElementById('speakerLinkedIn').value;
+    
+                const speakerButton = document.createElement('speaker-button');
+                speakerButton.type = 'button';
+                speakerButton.className = 'speaker-button'; 
+                speakerButton.textContent = speakerName;
+                speakerButton.onclick = function() {
+                    alert(`Name: ${speakerName}\nCompany: ${speakerCompany}\nDesignation: ${speakerDesignation}\nLinkedIn: ${speakerLinkedIn}`);
+                };
+    
+                const formGroup = document.querySelector('.form-group[data-speaker]');
+                formGroup.insertBefore(speakerButton, document.querySelector('.add-speaker-button'));
+    
+                closePopup();
+            }
+        </script>
+
+    </head>
+    <body>
+        <header>
+            <a href="Welcome.html">
+            <img src="KJSCE.png" alt="Somaiya Vidyavihar University Logo" class="logo">
+            </a>
+            <a href="index.html">
+                <button class="logout-button">
+                    <img src="logout.png" alt="Logout Icon">
+                    Logout
+                </button>
+            </a>
+        </header>
+        <div class="home-container">
+            <a href="welcome.html" class="home-link">
+                <button class="home-button">
+                    <img src="home.png" alt="Home Icon">
+                    <span>Home</span>
+                </button>
+            </a>
+            <a href="editactivity.html" class="back-link">
+                <button class="back-button">
+                    <img src="back.png" alt="Back Icon">
+                    <span>Back</span>
+                </button>
+            </a>
+        </div>
+        <div class="main-content">
+            <h1 class="title">Upload Activity</h1>
+            <div class="form-container">
+                <form id="activityForm" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="activityType">Type of Activity</label>
+                        <select id="activityType" name="activityType" required>
+                            <option value="">Select Type</option>
+                            <option value="event">Event</option>
+                            <option value="activity">Activity</option>
+                            <option value="workshop">Workshop</option>
+                            <option value="training">Training</option>
+                            <option value="seminar">Seminar</option>
+                            <option value="webinar">Webinar</option>
+                            <option value="GuestLec">Guest Lecture</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="activityName">Name of Activity</label>
+                        <input type="text" id="activityName" name="activityName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organizingStudents">Name of Organizing Students/Councils </label>
+                        <input type="text" id="organizingStudents" name="organizingStudents" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startDate">Start Date</label>
+                        <input type="date" id="startDate" name="startDate" required>
+                        <label for="endDate">End Date</label>
+                        <input type="date" id="endDate" name="endDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="venue">Venue</label>
+                        <input type="text" id="venue" name="venue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="hours">No of Hours</label>
+                        <input type="text" id="hours" name="hours" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="participants">Number of Participants</label>
+                        <input type="text" id="participants" name="participants" required>
+                    </div>
+
+                    
+                    <div class="form-group">
+                        <label for="targetAudience">Target Audience </label>
+                        <select id="targetAudience" name="targetAudience" required multiple>
+
+                            <option value="UGInHouse">UG Inhouse Students</option>
+                            <option value="PGInHouse">PG Inhouse Students</option>
+                            <option value="UGExternal">UG External Students</option>
+                            <option value="PGExternal">PG External Students</option>
+                            <option value="Faculty">Faculty</option>
+                            <option value="Staff">Staff</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" data-speaker>
+                        <label>Speakers:</label>
+                        <button type="button" class="add-speaker-button" onclick="showPopup()">
+                            <img src="add.png" alt="Add Icon">
+                            Add Speaker
+                        </button>   
+                    </div>
+                    <div class="form-group">
+                        <label for="objectives">Objectives</label>
+                        <textarea id="objectives" name="objectives" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="Outcomes">Outcomes</label>
+                        <textarea id="outcomes" name="outcomes" rows="4" required></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="photos">Upload Photos</label>
+                        <input type="file" id="photos" name="photos" accept=".zip,.rar,.7zip" required>
+                        <small>(Upload only .zip, .rar, or .7zip files)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="photos">Upload Pamphlet</label>
+                        <input type="file" id="Pamphlet" name="photos" accept=".pdf,.jpg,.png" required>
+                        <small>(Upload only .pdf, .jpg, or .png files)</small>
+                    </div>
+
+
+                    <button type="submit" class="save-button">
+                        <img src="save.png" alt="Save Icon">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+        <!-- Popup Form -->
+        
+        <div class="popup-form" id="popupForm">
+            <form>
+                <div class="form-group">
+                    <label for="speakerName">Name</label>
+                    <input type="text" id="speakerName" name="speakerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="speakerCompany">Company</label>
+                    <input type="text" id="speakerCompany" name="speakerCompany" required>
+                </div>
+                <div class="form-group">
+                    <label for="speakerDesignation">Designation</label>
+                    <input type="text" id="speakerDesignation" name="speakerDesignation" required>
+                </div>
+                <div class="form-group">
+                    <label for="speakerLinkedIn">LinkedIn</label>
+                    <input type="text" id="speakerLinkedIn" name="speakerLinkedIn" required>
+                </div>
+                <button type="button" class="save-button" onclick="addSpeaker()">
+                    <img src="save.png" alt="Save Icon">
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
+
+
+    </body>
+    </html>

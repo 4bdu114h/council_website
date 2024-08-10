@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Page</title>
+    <style>
+        body {
+            font-family: Marcellus, Serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            font-family: Marcellus, Serif;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ccc;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logout-button {
+            font-family: Marcellus, Serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px; /* Rounded edges */
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .home-container {
+            font-family: Marcellus, Serif;
+            margin: 20px;
+        }
+
+        .home-link {
+            text-decoration: none;
+        }
+
+        .home-button {
+            font-family: Marcellus, Serif;
+            background-color: #f0f0f0;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 8px; /* Rounded edges */
+        }
+
+        .home-button img {
+            font-family: Marcellus, Serif;
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            font-family: Marcellus, Serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .row {
+            font-family: Marcellus, Serif;
+            display: flex;
+            justify-content: center;
+            gap: 50px; /* Space between Certificates and Members buttons */
+            margin-bottom: 1    px; /* Space between the top row and Summary button */
+        }
+
+        .action-button {
+            font-family: Marcellus, Serif;
+            background-color: #d99999;
+            border: none;
+            border-radius: 8px;
+            padding: 20px;
+            font-size: 18px;
+            color: #333;
+            text-align: center;
+            cursor: pointer;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-button img {
+            font-family: Marcellus, Serif;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="SVU.png" alt="Somaiya Vidyavihar University Logo" class="logo">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        <a href="index.html">
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+        </a>
+    </header>
+    <div class="home-container">
+        <a href="welcome.html" class="home-link">
+            <button class="home-button">
+                <img src="home.png" alt="Home Icon">
+                <span>Home</span>
+            </button>
+        </a>
+    </div>
+    <div class="main-content">
+        <div class="row">
+            <a href="editcertificate.html" class="home-link">
+            <button class="action-button">
+                <img src="certificate.png" alt="Certificates Icon">
+                <span>Certificates</span>
+            </button>
+            </a>
+            <a href="editmember.html" class="home-link">
+            <button class="action-button">
+                <img src="members.png" alt="Members Icon">
+                <span>Members</span>
+            </button>
+            </a>    
+        </div>
+    </div>
+</body>
+</html>

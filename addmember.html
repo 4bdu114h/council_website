@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Member</title>
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .logout-button {
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .home-container, .back-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            padding: 1px 2px;
+            box-sizing: border-box;
+        }
+
+        .home-link, .back-link {
+            text-decoration: none;
+        }
+
+        .home-button, .back-button {
+            background-color: #f0f0f0;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #000000;
+            border-radius: 8px;
+        }
+
+        .home-button img, .back-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+            color: #d51d33;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            width: 70%;
+            max-width: 600px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #990000;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:disabled {
+            background-color: #f0f0f0;
+        }
+
+        .save-button {
+            font-family: Marcellus, serif;
+            background-color: #4CAF50;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            color: white;
+            border: 2px solid #000000;
+        }
+
+        .save-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+    </style>
+    <script>
+        function validateForm(event) {
+            event.preventDefault();
+            const rollNo = document.getElementById('roll-no').value;
+            const contactNo = document.getElementById('contact-no').value;
+            const emailID = document.getElementById('email-id').value;
+            const emailPattern = /^[^\s@]+@somaiya\.edu$/;
+            let isValid = true;
+
+            if (rollNo.length !== 11) {
+                alert('Roll No. must be 11 digits.');
+                isValid = false;
+            }
+
+            if (contactNo.length !== 10) {
+                alert('Contact No. must be 10 digits.');
+                isValid = false;
+            }
+
+            if (!emailPattern.test(emailID)) {
+                alert('Email ID must include "@somaiya.edu".');
+                isValid = false;
+            }
+
+            if (isValid) {
+                window.location.href = 'editmember.html';
+            }
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <a href="index.html">
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+        </a>
+    </header>
+    <div class="home-container">
+        <a href="welcome.html" class="home-link">
+            <button class="home-button">
+                <img src="home.png" alt="Home Icon">
+                <span>Home</span>
+            </button>
+        </a>
+        <a href="editmember.html" class="back-link">
+            <button class="back-button">
+                <img src="back.png" alt="Back Icon">
+                <span>Back</span>
+            </button>
+        </a>
+    </div>
+    <div class="main-content">
+        <h1 class="title">Add Member</h1>
+        <div class="form-container">
+            <form id="add-member-form" onsubmit="validateForm(event)">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="designation">Designation</label>
+                    <select id="designation" required>
+                        <option value="">Select Designation</option>
+                        <option value="Chairperson">Chairperson</option>
+                        <option value="Vice Chairperson">Vice Chairperson</option>
+                        <option value="Event&Operation Head">Event and Operation Head</option>
+                        <option value="PR Head">Public Relations Head</option>
+                        <option value="Social Media and Content Head">Social Media and Content Head</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="branch">Branch</label>
+                    <select id="branch" required>
+                        <option value="">Select Branch</option>
+                        <option value="COMPS">COMPS</option>
+                        <option value="EXTC">EXTC</option>
+                        <option value="EXCP">EXCP</option>
+                        <option value="AI DS">AI DS</option>
+                        <option value="IT">IT</option>
+                        <option value="RAI">RAI</option>
+                        <option value="CCE">CCE</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <select id="year" required>
+                        <option value="">Select Year</option>
+                        <option value="First">First Year</option>
+                        <option value="Second">Second Year</option>
+                        <option value="Third">Third Year</option>
+                        <option value="Fourth">Fourth Year</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="roll-no">Roll No.</label>
+                    <input type="text" id="roll-no" required pattern="\d{11}" title="Roll No. must be 11 digits.">
+                </div>
+                <div class="form-group">
+                    <label for="email-id">Email ID</label>
+                    <input type="text" id="email-id" required pattern="^[^\s@]+@somaiya\.edu$" title="Email ID must include '@somaiya.edu'.">
+                </div>
+                <div class="form-group">
+                    <label for="contact-no">Contact No.</label>
+                    <input type="text" id="contact-no" required pattern="\d{10}" title="Contact No. must be 10 digits.">
+                </div>
+                <button type="submit" class="save-button">
+                    <img src="save.png" alt="Save Icon">
+                    <span>Save</span>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
