@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Members</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&display=swap">
+    <style>
+        body {
+            font-family: Marcellus, serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #dedede;
+            padding: 10px 20px;
+            border-bottom: 2px solid #ffffff;
+        }
+
+        .logo {
+            height: 60px;
+        }
+
+        .menu-container {
+            position: fixed;
+            top: 80px;
+            left: 0;
+            height: calc(100% - 80px); 
+            width: 200px;
+            background-color: #dedede;
+            border-right: 2px solid #ffffff;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
+        }
+
+        .menu-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+            margin: 20px;
+            position: fixed;
+            top: 80px; 
+            left: 10px;
+            z-index: 1100;
+        }
+
+        .menu-button img {
+            height: 24px;
+        }
+
+        .collapsible-menu a {
+            font-family: Marcellus, serif;
+            display: block;
+            padding: 10px 20px;
+            color: #b7202e;
+            text-decoration: none;
+            border-bottom: 1px solid #ffffff;
+        }
+
+        .collapsible-menu a:hover {
+            background-color: #C88A91;
+        }
+
+        .collapsible-menu a:first-child {
+            margin-top: 50px; 
+        }
+
+        .logout-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: 2px solid #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            border-radius: 8px;
+        }
+
+        .logout-button img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        .main-content {
+            font-family: Marcellus, serif;
+            padding: 20px;
+            margin-left: 20px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .table-container {
+            width: 70%; 
+            margin: 0 auto 20px auto; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        table {
+            width: 100%; 
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #B7202E;
+            color: #ffffff;
+        }
+        
+        .view-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: #000000 solid;
+            border-width: 1px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;    
+        }
+
+        .view-button img {
+            height: 20px; 
+            width: 20px; 
+        }
+        
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .popup-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-content div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .popup-content span {
+            flex-basis: 50%;
+            text-align: left;
+        }
+
+        .close-btn {
+            background-color: #f2dede;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            align-self: center;
+            font-size: 16px;
+        }
+
+        .menu-open .menu-container {
+            transform: translateX(0);
+        }
+
+        .download-button {
+            font-family: Marcellus, serif;
+            background-color: #ffffff;
+            border: #000000 solid;
+            border-width: 1px;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="Welcome.html">
+        <img src="KJSCE.png" alt="K J Somaiya College of Engineering Logo" class="logo">
+        </a>
+        <button class="logout-button">
+            <img src="logout.png" alt="Logout Icon">
+            Logout
+        </button>
+    </header>
+
+    <button class="menu-button" onclick="toggleMenu()">
+        <img src="menu.png" alt="Menu Icon">
+    </button>
+
+    <div class="menu-container collapsible-menu" id="collapsibleMenu">
+        <a href="viewcertificate.html">Certificates</a>
+        <a href="viewmember.html">Members</a>
+        <a href="viewactivities.html">Activities</a>
+        <a href="summary.html">Summary</a>
+    </div>
+
+    <div class="main-content" id="mainContent">
+        <h1>View Members</h1>
+        <div class="table-container">
+            <button class="download-button" onclick="downloadSelected()">Download Details</button> 
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Designation</th>
+                        <th>Actions</th>
+                        <th>Select</th> 
+                    </tr>
+                </thead>
+                <tbody id="membersTableBody">
+                    <!-- Rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="overlay"></div>
+    <div class="popup">
+        <div class="popup-content">
+            <div>
+                <span>First Name</span>
+                <span id="firstName">Disha</span>
+            </div>
+            <div>
+                <span>Last Name</span>
+                <span id="lastName">Kataria</span>
+            </div>
+            <div>
+                <span>Designation</span>
+                <span id="designation">Chairperson</span>
+            </div>
+            <div>
+                <span>Branch</span>
+                <span id="branch">Computer Science</span>
+            </div>
+            <div>
+                <span>Year</span>
+                <span id="year">Second</span>
+            </div>
+            <div>
+                <span>Roll No.</span>
+                <span id="rollNo">16014220001</span>
+            </div>
+            <div>
+                <span>Email ID</span>
+                <span id="email">disha.kataria@somaiya.edu</span>
+            </div>
+            <div>
+                <span>Contact No.</span>
+                <span id="contact">+1234567890</span>
+            </div>
+            <button class="close-btn">✖ Close</button>
+        </div>
+    </div>
+    
+    <script>
+        // Function to toggle the menu
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+        }
+
+        // Function to fetch and populate the member data
+        async function fetchMembers() {
+            try {
+                const response = await fetch('/api/members');
+                const members = await response.json();
+                const tableBody = document.getElementById('membersTableBody');
+
+                members.forEach(member => {
+                    const row = document.createElement('tr');
+                    row.setAttribute('data-details', JSON.stringify(member));
+
+                    row.innerHTML = `
+                        <td>${member.firstName} ${member.lastName}</td>
+                        <td>${member.designation}</td>
+                        <td><button class="view-button"><img src="view.png" alt="View"></button></td>
+                        <td><input type="checkbox" class="member-checkbox"></td>
+                    `;
+
+                    tableBody.appendChild(row);
+                });
+
+                // Add event listeners to view buttons
+                document.querySelectorAll('.view-button').forEach(button => {
+                    button.addEventListener('click', (event) => {
+                        const tr = event.target.closest('tr');
+                        const details = JSON.parse(tr.getAttribute('data-details'));
+
+                        document.getElementById('firstName').textContent = details.firstName;
+                        document.getElementById('lastName').textContent = details.lastName;
+                        document.getElementById('designation').textContent = details.designation;
+                        document.getElementById('branch').textContent = details.branch;
+                        document.getElementById('year').textContent = details.year;
+                        document.getElementById('rollNo').textContent = details.rollNo;
+                        document.getElementById('email').textContent = details.email;
+                        document.getElementById('contact').textContent = details.contact;
+
+                        document.querySelector('.overlay').style.display = 'block';
+                        document.querySelector('.popup').style.display = 'block';
+                    });
+                });
+
+            } catch (error) {
+                console.error('Error fetching members:', error);
+            }
+        }
+
+        // Function to download selected members' details
+        function downloadSelected() {
+            const selectedMembers = Array.from(document.querySelectorAll('.member-checkbox:checked')).map(checkbox => {
+                return JSON.parse(checkbox.closest('tr').getAttribute('data-details'));
+            });
+
+            if (selectedMembers.length === 0) {
+                alert('Please select at least one member to download.');
+                return;
+            }
+
+            const csvContent = "data:text/csv;charset=utf-8," 
+                + ["First Name,Last Name,Designation,Branch,Year,Roll No.,Email,Contact No."]
+                + selectedMembers.map(member => 
+                    `${member.firstName},${member.lastName},${member.designation},${member.branch},${member.year},${member.rollNo},${member.email},${member.contact}`
+                ).join("\n");
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "selected_members.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Fetch members when the page loads
+        window.onload = fetchMembers;
+
+        document.querySelector('.close-btn').addEventListener('click', () => {
+            document.querySelector('.overlay').style.display = 'none';
+            document.querySelector('.popup').style.display = 'none';
+        });
+    </script>
+</body>
+</html>
