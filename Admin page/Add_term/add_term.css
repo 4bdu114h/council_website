@@ -1,0 +1,193 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo-left {
+    max-width: 200px; /* Adjust the max-width as needed */
+}
+
+.logo-right {
+    max-width: 200px; /* Adjust the max-width as needed */
+}
+
+.home-icon {
+    display: flex;
+    justify-content: flex-end;
+    padding: 100px 20px 20px; /* Adjusted padding to position below the header */
+}
+
+.home-icon img {
+    width: 50px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.sidebar {
+    position: fixed;
+    top: 90px; /* Adjusted to align below the header */
+    left: 0;
+    width: 60px; /* Initial width of the sidebar */
+    height: calc(100% - 90px - 80px); /* Adjusted height to avoid overlapping with header and footer */
+    background-color: #007BFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: width 0.3s; /* Smooth transition for expanding */
+    z-index: 1000; /* Ensure sidebar is above other content */
+}
+
+.sidebar.expanded {
+    width: 200px; /* Expanded width of the sidebar */
+}
+
+.sidebar .toggle-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 20px 0;
+    cursor: pointer;
+}
+
+.sidebar .button-container {
+    display: none; /* Initially hide button container */
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    transition: opacity 0.3s; /* Smooth transition for opacity */
+}
+
+.sidebar.expanded .button-container {
+    display: flex; /* Show button container when expanded */
+}
+
+.sidebar a.button {
+    display: block;
+    width: 80%;
+    margin: 10px 0;
+    padding: 10px 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    background-color: #0056b3;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.sidebar a.button:hover {
+    background-color: #004494;
+}
+
+.container {
+    padding: 0px 20px 20px;
+    margin-left: 200px; /* Adjusted margin-left to shift the content to the right */
+    transition: margin-left 0.3s; /* Smooth transition for margin adjustment */            
+    position: fixed;
+}
+
+.sidebar.expanded ~ .container {
+    margin-left: 220px; /* Adjusted margin when sidebar is expanded */
+}
+
+.form-group {
+    margin-bottom: 40px; /* Increased margin-bottom */
+}
+
+.form-group button {
+    background-color: blue;
+    color: white;
+    padding: 40px 80px; /* Increased padding */
+    border: none;
+    cursor: pointer;
+    font-size: 32px; /* Increased font size */
+}
+
+.view-term {
+    margin-top: 40px; /* Increased margin-top */
+}
+
+.view-term h2 {
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px;
+}
+
+.view-term .term-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Space between terms */
+}
+
+.view-term .term-item p {
+    margin: 0;
+    font-size: 18px; /* Increased font size */
+    margin-right: 20px; /* Space between term and button */
+}
+
+.view-term img {
+    width: 40px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+    vertical-align: middle; /* Align with text */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    margin: 0 auto;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+footer p {
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+.form-group-inline {
+    display: flex;
+    align-items: center;
+}
+
+.form-group-inline button {
+    background-color: rgb(27, 186, 90);
+    color: white;
+    padding: 5px 10px; /* Increased padding */
+    border: none;
+    cursor: pointer;
+    font-size: 32px; /* Increased font size */
+} 
+
+.form-group-inline h1 {
+    margin: 0;
+    margin-right: 50px; /* Add some space between the title and the button */
+}
+
+.form-group-inline select {
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 20px;
+}
