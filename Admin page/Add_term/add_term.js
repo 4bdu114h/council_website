@@ -18,7 +18,7 @@ function addTerm() {
     const termList = document.getElementById('termList');
     const newTerm = document.createElement('div');
     newTerm.className = 'term-item';
-    newTerm.innerHTML = `<p>${selectedTerm}</p> <a href="view_year.html?term=${selectedTerm}"><img src="view.png" alt="View Term"></a>`;
+    newTerm.innerHTML = `<p>${selectedTerm}</p> <a href="view_year.html?term=${selectedTerm}"><img src="view_icon.png" alt="View Term"></a>`;
     termList.appendChild(newTerm);
 }
 
