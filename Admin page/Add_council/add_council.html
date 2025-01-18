@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add_council.css"></link>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo-left">
+        <img src="logo_st.png" alt="Logo" class="logo-right">
+    </header>
+    <div class="home-icon">
+        <a href="view_year.html"><img src="home.png" alt="Home Icon"></a>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <img src="menu.png" alt="Dashboard Button" class="toggle-button" style="width: 60px; height: auto; margin-bottom: 20px; cursor: pointer;">
+        <div class="button-container">
+            <a href="add_council.html" class="button">Add Council</a>
+            <a href="view_year.html" class="button">View Council</a>
+            <a href="add_designation.html" class="button">Add Designation</a>
+            <a href="add_term.html" class="button">Add Term</a>
+        </div>
+    </div>
+    <div class="form-container">
+        <h2>Add Council</h2>
+        <form id="addCouncilForm" action="view_council.html" onsubmit="return validateForm()">
+            <div class="input-group">
+                <label for="councilName">Council Name:</label>
+                <input type="text" id="councilName" name="councilName" required>
+            </div>
+            <div class="input-group">
+                <label for="councilDescription">Council Description:</label>
+                <input type="text" id="councilDescription" name="councilDescription" required>
+            </div>
+            <div class="input-group">
+                <label for="councilEmail">Council Email:</label>
+                <input type="email" id="councilEmail" name="councilEmail" required pattern=".+@somaiya\.edu$" title="Email must be in the format: example@somaiya.edu">
+            </div>
+            <h3>Faculty Name</h3>
+            <div id="facultyContainer">
+                <div class="faculty-input-group">
+                    <h4>Faculty 1</h4>
+                    <div class="input-group">
+                        <label for="facultyInCharge1">Faculty in-Charge:</label>
+                        <input type="text" id="facultyInCharge1" name="facultyInCharge1" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="facultyMobile1">Mobile Number:</label>
+                        <input type="text" id="facultyMobile1" name="facultyMobile1" required pattern="\d{10}" title="Mobile number must be 10 digits long">
+                    </div>
+                    <div class="input-group">
+                        <label for="facultyEmail1">Email ID:</label>
+                        <input type="email" id="facultyEmail1" name="facultyEmail1" required pattern=".+@somaiya\.edu$" title="Email must be in the format: example@somaiya.edu">
+                    </div>
+                    <div class="member-checkbox">
+                        <label for="facultyMember1">Member</label>
+                        <input type="checkbox" id="facultyMember1" name="facultyMember1">
+                    </div>
+                </div>
+            </div>
+            <div id="staffContainer"></div>
+            <div class="form-buttons">
+                <button type="button" onclick="addFaculty()">Add Another Faculty</button>
+                <p></p>
+                <button type="button" onclick="addStaff()">Add Staff</button>
+                <p></p>
+                <button type="submit">Add Council</button>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <img src="logo.png" alt="Logo" class="logo-left">
+        <p>All Rights Reserved - KJSCE</p>
+    </footer>
+    <script src="add_council.js"></script>
+</body>
+</html>

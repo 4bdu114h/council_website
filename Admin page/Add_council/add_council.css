@@ -1,0 +1,159 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.logo-left, .logo-right {
+    max-width: 200px;
+}
+
+.home-icon {
+    position: absolute;
+    top: 100px;
+    right: 20px;
+}
+
+.home-icon img {
+    width: 50px;
+    height: auto;
+}
+
+.sidebar {
+    position: fixed;
+    top: 90px; /* Adjusted to align below the header */
+    left: 0;
+    width: 60px; /* Initial width of the sidebar */
+    height: 100%; /* Full height of the viewport */
+    background-color: #007BFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: width 0.3s; /* Smooth transition for expanding */
+}
+
+.sidebar.expanded {
+    width: 200px; /* Expanded width of the sidebar */
+}
+
+.sidebar .button-container {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.sidebar.expanded .button-container {
+    display: flex; /* Show buttons when sidebar is expanded */
+}
+
+.button {
+    width: 100%;
+    padding: 10px;
+    background-color: #fff;
+    color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    margin-top: 100px;
+    flex: 1; /* This makes the form-container grow and take available space */
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+footer p {
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+.form-buttons {
+    margin-top: 20px;
+}
+
+.faculty-input-group {
+    margin-bottom: 20px;
+}
+
+.member-checkbox {
+    margin-top: 10px;
+}
