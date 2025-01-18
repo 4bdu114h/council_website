@@ -1,0 +1,162 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Fira Sans', sans-serif;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.logo-left, .logo-right {
+    max-width: 200px; /* Adjust the max-width as needed */
+}
+
+.home-icon {
+    position: fixed;
+    top: 110px; /* Adjusted top to be below the header */
+    right: 20px;
+    z-index: 1000;
+}
+
+.home-icon img {
+    width: 60px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.main-container {
+    display: flex;
+    height: 100%;
+    margin-top: 90px; /* Adjust margin to avoid overlap with header */
+    transition: margin-left 0.3s; /* Smooth transition for margin adjustment */
+    padding-left: 60px; /* Initial padding to account for sidebar */
+}
+
+.sidebar {
+    position: fixed;
+    top: 90px; /* Adjusted to align below the header */
+    left: 0;
+    width: 60px; /* Initial width of the sidebar */
+    height: calc(100% - 90px - 74px); /* Adjusted height to avoid overlapping with header and footer */
+    background-color: #007BFF;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: width 0.3s; /* Smooth transition for expanding */
+}
+
+.sidebar.expanded {
+    width: 200px; /* Expanded width of the sidebar */
+}
+
+.sidebar .button-container {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.expanded .button-container {
+    display: flex; /* Show buttons when sidebar is expanded */
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    background-color: #0056b3;
+    border: none;
+    cursor: pointer;
+    margin: 5px 0;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #004494;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin: 0 0 20px 0;
+}
+
+table {
+    width: 80%; /* Reduced width to prevent overlap */
+    border-collapse: collapse;
+    margin: 0 auto; /* Center the table */
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #b02222;
+    color: white;
+}
+
+td a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+td a:hover {
+    text-decoration: underline;
+}
+
+td img {
+    width: 24px; /* Adjust the size as needed */
+    height: 24px; /* Adjust the size as needed */
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    color: white;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+.footer-logo-left {
+    max-width: 150px; /* Adjust the max-width as needed */
+}
+
+.footer-text {
+    margin-left: auto; /* Pushes text to the extreme right */
+    text-align: right; /* Align text to the right */
+}
+
+.footer-text p {
+    margin: 0; /* Remove default margin */
+}

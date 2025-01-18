@@ -1,0 +1,138 @@
+body {
+    font-family: 'Fira Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    padding: 20px;
+    box-sizing: border-box;
+    z-index: 1000;
+}
+
+.logo-left, .logo-right {
+    max-width: 200px; /* Adjust the max-width as needed */
+}
+
+.home-icon {
+    position: fixed;
+    top: 110px; /* Adjusted top to be below the header */
+    right: 20px;
+    z-index: 1000;
+}
+
+.home-icon img {
+    width: 60px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.sidebar {
+    position: fixed;
+    top: 90px; /* Adjusted to align below the header */
+    left: 0;
+    width: 60px; /* Initial width of the sidebar */
+    height: calc(100% - 90px); /* Adjusted height to avoid overlapping with header */
+    background-color: #007BFF;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    transition: width 0.3s; /* Smooth transition for expanding */
+}
+
+.sidebar.expanded {
+    width: 200px; /* Expanded width of the sidebar */
+}
+
+.sidebar .button-container {
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.expanded .button-container {
+    display: flex; /* Show buttons when sidebar is expanded */
+}
+
+.button {
+    width: 150px;
+    padding: 10px;
+    background-color: #fff;
+    color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.container {
+    max-width: 800px;
+    margin: 140px auto 20px; /* Adjusted margin to avoid overlap with header */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.info-section {
+    margin-bottom: 20px;
+}
+
+.info-section p {
+    margin: 5px 0;
+}
+
+.members-list, .faculty-list {
+    list-style: none;
+    padding: 0;
+}
+
+.members-list li, .faculty-list li {
+    margin: 5px 0;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ca0c0c;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+footer p {
+    color: white;
+}
+
+footer a {
+    color: white;
+}
+
+.toggle-button {
+    cursor: pointer;
+}
