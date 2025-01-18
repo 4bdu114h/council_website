@@ -20,7 +20,7 @@ function validateForm() {
         }
     }
 
-    return true;  // Form is valid
+    return true;
 }
 
 function addFaculty() {
