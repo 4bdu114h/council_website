@@ -6,7 +6,7 @@ function addDesignation() {
         newDesignation.textContent = designation;
 
         let deleteIcon = document.createElement('img');
-        deleteIcon.src = 'delete.png'; // Path to your delete icon
+        deleteIcon.src = 'delete.png';
         deleteIcon.alt = 'Delete';
         deleteIcon.onclick = function () {
             designationList.removeChild(newDesignation);
