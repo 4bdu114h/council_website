@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Designation</title>
+    <link rel="stylesheet" href="add_designation.css"></link>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Marcellus&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo" class="logo-left">
+        <img src="logo_st.png" alt="Logo" class="logo-right">
+    </header>
+    <div class="home-icon">
+        <a href="view_year.html"><img src="home.png" alt="Home Icon"></a> <!-- Updated to include anchor tag -->
+    </div>
+    <div class="sidebar" id="sidebar">
+        <img src="menu.png" alt="Dashboard Button" class="toggle-button" style="width: 60px; height: auto; margin-bottom: 20px; cursor: pointer;">
+        <div class="button-container">
+            <a href="add_council.html" class="button">Add Council</a>
+            <a href="view_year.html" class="button">View Council</a>
+            <a href="add_designation.html" class="button">Add Designation</a>
+            <a href="add_term.html" class="button">Add Term</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="form-group-inline">
+            <h1>Add Designation</h1>
+            <button type="button" onclick="addDesignation()">Add</button>
+        </div>
+        <div class="view-designation">
+            <h2>View Designation</h2>
+            <div id="designationList"></div>
+        </div>
+    </div>
+    <footer>
+        <img src="logo.png" alt="Logo" class="logo-left">
+        <p>All Rights Reserved - KJSCE</p>
+    </footer>
+ <script src="add_desgination.js"></script>   
+</body>
+</html>
