@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="admin_login.css"></link>
+    <head>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="image-container">
+                <img src="sc.png" alt="Image Outside Login" class="image-outside-login" width="900"height="600">
+            </div>
+            <div class="login-container" width="900"height="600">
+                <header>
+                    <img src="logo.png" alt="Logo" class="logo-left">
+                    <img src="logo_st.png" alt="Logo" class="logo-right">
+                </header>
+                <h2>Welcome to Council Login</h2>
+                <h4>Please Enter AdminId and Password to Login</h4>
+                <form id="loginForm" onsubmit="return validateForm()">
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                    <p></p>
+                    <a href="#"><u>Forgot Password</u></a>
+                    <p id="error-message"></p>
+                </form>
+                <footer>
+                    <img src="logo.png" alt="Logo" class="logo-left">
+                    <p>All Rights Reserved - KJSCE</p>
+                </footer>
+            </div>
+        </div>
+        <script src="admin_login.js"></script>
+    </body>
